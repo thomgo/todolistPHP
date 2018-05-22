@@ -1,5 +1,3 @@
-<?php define( 'SCRIPT_ROOT', 'http://localhost/Simplon/PHP/Projets/todolist/' ); ?>
-
 <!DOCTYPE html>
 <html>
   <head>

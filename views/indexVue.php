@@ -21,7 +21,10 @@
       </div>
       <div class="modal-body">
         <form class="" action="" method="post">
-          <input type="text" name="test" value="">
+          <p>Titre</p>
+          <input type="text" name="title" value="">
+          <p>Description</p>
+          <textarea name="description" rows="4" cols="50">Votre contenu</textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

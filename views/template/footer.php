@@ -1,4 +1,4 @@
-<footer class="jumbotron jumbotron-fluid mainColor">
+<footer class="jumbotron jumbotron-fluid mainColor mb-0">
   <section class="container">
     <p class="lead">A sample App made as teacher at Simplon Roubaix</p>
   </section>

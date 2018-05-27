@@ -8,9 +8,27 @@
     <link rel="stylesheet" href="<?php echo SCRIPT_ROOT . 'assets/css/main.css' ?>">
   </head>
   <body>
-    <header class="jumbotron jumbotron-fluid mainColor">
+    <header class="jumbotron jumbotron-fluid mainColor mb-0">
       <section class="container">
         <h1 class="display-4">Project manager</h1>
         <p class="lead">Deal easily with your projects</p>
       </section>
     </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse container" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo SCRIPT_ROOT . 'controllers/index.php' ?>">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo SCRIPT_ROOT . 'controllers/archive.php' ?>">Archive</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="container pt-3">

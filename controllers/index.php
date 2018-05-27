@@ -5,6 +5,9 @@ require_once "../model/project.php";
 if(isset($_POST["deleteProject"])) {
   deleteProject($_POST, $bdd);
 }
+if(isset($_POST["archiveProject"])) {
+  archiveProject($_POST, $bdd);
+}
 
 if(isset($_POST["addProject"])) {
   addProject($_POST, $bdd);
@@ -12,5 +15,5 @@ if(isset($_POST["addProject"])) {
 
 $projects = getProjects($bdd);
 
-include "../views/indexVue.php";
+include "../views/indexView.php";
  ?>

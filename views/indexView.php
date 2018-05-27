@@ -25,6 +25,8 @@
           <input type="text" name="title" value="">
           <p>Description</p>
           <textarea name="description" rows="4" cols="50">Votre contenu</textarea>
+          <p>Date de fin (jj/mm/aaaa)</p>
+          <input type="date" name="endDate" value="">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -42,6 +44,8 @@
    ?>
    <div class="col-sm-4">
      <article class="project secondColor my-3 py-2 px-2">
+       <p><?php echo $project["endDate"]; ?></p>
+       <p><?php echo $project["leftDays"]; ?></p>
        <h3><?php echo $project["title"]; ?></h3>
        <p><?php echo $project["description"]; ?></p>
        <div class="actions flex">

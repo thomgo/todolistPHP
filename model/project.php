@@ -1,6 +1,6 @@
 <?php
 
-// Enregistre un projet en base de données
+//Store a new project in database
 function addProject(Array $project, $bdd) {
   $requete = $bdd->prepare("INSERT INTO project(title, description) VALUES(:title, :description)");
   $requete->execute([
@@ -9,11 +9,17 @@ function addProject(Array $project, $bdd) {
   ]);
 }
 
-//Récupère tous les projets pour affichage en paghe d'accueil
+//Get all projects in database to display them on index view
 function getProjects($bdd) {
   $requete = $bdd->query("SELECT * FROM project");
   $projects = $requete->fetchAll(PDO::FETCH_ASSOC);
   return $projects;
 }
+
+//Delete a specific project in database
+function deleteProject(Array $project, $bdd){
+  $requete = $bdd->prepare("DELETE FROM project WHERE p_id = " . $project['p_id']);
+  $requete->execute();
+ }
 
  ?>

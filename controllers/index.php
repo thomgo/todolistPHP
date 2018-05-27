@@ -2,7 +2,11 @@
 require_once "../services/global.php";
 require_once "../model/project.php";
 
-if(!empty($_POST)) {
+if(isset($_POST["deleteProject"])) {
+  deleteProject($_POST, $bdd);
+}
+
+if(isset($_POST["addProject"])) {
   addProject($_POST, $bdd);
 }
 

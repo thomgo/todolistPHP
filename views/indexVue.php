@@ -28,7 +28,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-          <button type="submit" class="btn btn-primary">Enregistrer</button>
+          <button type="submit" name="addProject" class="btn btn-primary">Enregistrer</button>
         </div>
       </form>
     </div>
@@ -44,6 +44,12 @@
      <article class="project secondColor my-3 py-2 px-2">
        <h3><?php echo $project["title"]; ?></h3>
        <p><?php echo $project["description"]; ?></p>
+       <div class="actions">
+         <form class="form" action="" method="post">
+           <input type="hidden" name="p_id" value="<?php echo $project['p_id']; ?>">
+           <button type="submit" name="deleteProject" class="btn secondColor"><i class="fas fa-trash-alt"></i></button>
+         </form>
+       </div>
      </article>
    </div>
 

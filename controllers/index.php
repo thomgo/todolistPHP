@@ -23,8 +23,8 @@ $currentDate = new DateTime();
 foreach ($projects as $key => $project) {
   if($project["endDate"]) {
     $endDate = new DateTime($project["endDate"]);
-    $diff = $currentDate->diff($endDate, true)->format("%a");
-    echo $diff;
+    $diff = date_diff($currentDate, $endDate);
+    $diff = $diff->format("%r%a");
     if($diff > 0) {
       $projects[$key]["leftDays"] = $diff;
     }
@@ -39,7 +39,7 @@ foreach ($projects as $key => $project) {
       $projects[$key]["priority"] = "warning";
     }
     else {
-      $projects[$key]["priority"] = "succes";
+      $projects[$key]["priority"] = "success";
     }
   }
 }

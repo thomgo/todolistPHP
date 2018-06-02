@@ -46,8 +46,7 @@
      <article class="project secondColor my-3 py-2 px-2">
         <?php if ($project["endDate"]): ?>
           <p class="date <?php echo "bg-" . $project["priority"] ?>">
-            <span><i class="fas fa-calendar-alt"></i><?php echo " J -" . $project["leftDays"]; ?></span>
-            <span><?php echo "|| " . $project["endDate"]; ?></span>
+            <span><?php echo " J -" . $project["leftDays"]; ?></span>
           </p>
         <?php endif; ?>
        <h3><?php echo $project["title"]; ?></h3>
@@ -61,6 +60,9 @@
            <input type="hidden" name="p_id" value="<?php echo $project['p_id']; ?>">
            <button type="submit" name="archiveProject" class="btn secondColor"><i class="fas fa-archive"></i></i></button>
          </form>
+         <?php if ($project["endDate"]): ?>
+             <button class="btn secondColor"><i class="fas fa-calendar-alt"></i><?php echo " " . $project["endDate"]; ?></button>
+         <?php endif; ?>
        </div>
      </article>
    </div>

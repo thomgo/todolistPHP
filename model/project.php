@@ -12,14 +12,8 @@ function addProject(Array $project, $bdd) {
 
 //Get all projects in database to display them on index view
 function getProjects($bdd) {
-  $requete = $bdd->query("SELECT * , DATE_FORMAT(endDate, '%d-%m-%Y') AS endDate FROM project WHERE status = 1 ORDER BY endDate ASC");
+  $requete = $bdd->query("SELECT * , DATE_FORMAT(endDate, '%d-%m-%Y') AS endDate FROM project WHERE status = 1 ORDER BY DATE(endDate) ASC");
   $projects = $requete->fetchAll(PDO::FETCH_ASSOC);
-  $currentDate = new DateTime();
-  foreach ($projects as $key => $project) {
-    $endDate = new DateTime($project["endDate"]);
-    $diff = $endDate->diff($currentDate)->format("%a");
-    $projects[$key]["leftDays"] = $diff;
-  }
   return $projects;
 }
 

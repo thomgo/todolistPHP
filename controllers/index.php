@@ -1,6 +1,7 @@
 <?php
 require_once "../services/global.php";
 require_once "../model/project.php";
+require_once "../services/dateManipulator.php";
 
 //Handle the form submissions
 if(isset($_POST["deleteProject"])) {
@@ -10,6 +11,7 @@ if(isset($_POST["archiveProject"])) {
   archiveProject($_POST, $bdd);
 }
 if(isset($_POST["addProject"])) {
+  //If no date is choosen for the project then turn it into null for the database
   if(strlen($_POST["endDate"]) === 0){
     $_POST["endDate"] = null;
   }
@@ -18,31 +20,8 @@ if(isset($_POST["addProject"])) {
 
 //Get the necessary data
 $projects = getProjects($bdd);
-$currentDate = new DateTime();
-
-foreach ($projects as $key => $project) {
-  if($project["endDate"]) {
-    $endDate = new DateTime($project["endDate"]);
-    $diff = date_diff($currentDate, $endDate);
-    $diff = $diff->format("%r%a");
-    if($diff > 0) {
-      $projects[$key]["leftDays"] = $diff;
-    }
-    else {
-      $projects[$key]["leftDays"] = 0;
-    }
-
-    if ($diff <= 14) {
-      $projects[$key]["priority"] = "danger";
-    }
-    else if ($diff <= 30) {
-      $projects[$key]["priority"] = "warning";
-    }
-    else {
-      $projects[$key]["priority"] = "success";
-    }
-  }
-}
+//Calculate the due date of the projects in left days
+$projects = calculateLeftDays($projects);
 
 include "../views/indexView.php";
  ?>

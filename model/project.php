@@ -17,6 +17,16 @@ function getProjects($bdd) {
   return $projects;
 }
 
+//Get a single project in the data base
+function getProject($bdd, $id) {
+  $requete = $bdd->prepare("SELECT * , DATE_FORMAT(endDate, '%d-%m-%Y') AS endDate FROM project WHERE p_id= :p_id");
+  $requete->execute([
+    ":p_id" => $id
+  ]);
+  $projects = $requete->fetch(PDO::FETCH_ASSOC);
+  return $projects;
+}
+
 //Get all archived projects in database to display them on index view
 function getArchive($bdd) {
   $requete = $bdd->query("SELECT * FROM project WHERE status = 0");

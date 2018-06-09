@@ -2,7 +2,8 @@
   include("template/header.php")
  ?>
 
-  <h2><?php echo $project["title"]; ?></h2>
+  <h2>Project : <?php echo $project[0]["title"]; ?></h2>
+  <h3 class="my-4">Steps of the project</h3>
 
   <!-- Button trigger modal -->
 <button type="button" class="btn secondColor" data-toggle="modal" data-target="#addProject">
@@ -21,16 +22,13 @@
       </div>
       <div class="modal-body">
         <form class="" action="" method="post">
-          <p>Titre</p>
-          <input type="text" name="title" value="">
-          <p>Description</p>
-          <textarea name="description" rows="4" cols="50">Votre contenu</textarea>
-          <p>Date de fin (jj/mm/aaaa)</p>
-          <input type="date" name="endDate" value="">
+          <p>Step's name</p>
+          <input type="text" name="name" value="">
+          <input type="hidden" name="project_id" value="<?php echo $project[0]["p_id"]; ?>">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-          <button type="submit" name="addProject" class="btn secondColor">Enregistrer</button>
+          <button type="submit" name="addStep" class="btn secondColor">Add step</button>
         </div>
       </form>
     </div>
@@ -39,7 +37,18 @@
 
 <!-- Display projects inside a loop -->
 <div class="row mt-5">
+  <?php
+    foreach ($project as $step) {
+   ?>
+   <div class="col-sm-4">
+     <article class="project secondColor my-3 py-2 px-2">
+       <h3><?php echo $step["name"]; ?></h3>
+     </article>
+   </div>
 
+    <?php
+      }
+   ?>
 </div>
 
  <?php

@@ -7,7 +7,10 @@ if(empty($_GET["p_id"]) || !$_GET["p_id"] > 0) {
   header('Location: index.php');
 }
 
-$project = getProject($bdd, $_GET["p_id"]);
+if(isset($_POST["addStep"])) {
+  addStep($_POST, $bdd);
+}
 
+$project = getProject($bdd, $_GET["p_id"]);
 include "../views/projectView.php";
  ?>

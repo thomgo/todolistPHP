@@ -35,9 +35,10 @@
   </div>
 </div>
 
-<!-- Display projects inside a loop -->
+<!-- Display steps inside a loop -->
 <div class="row mt-5">
   <?php
+    if($project[0]["name"] !== null) {
     foreach ($project as $step) {
    ?>
    <div class="col-sm-4">
@@ -48,6 +49,7 @@
 
     <?php
       }
+    }
    ?>
 </div>
 

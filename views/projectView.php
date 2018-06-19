@@ -44,6 +44,12 @@
    <div class="col-sm-4">
      <article class="project secondColor my-3 py-2 px-2">
        <h3><?php echo $step["name"]; ?></h3>
+       <div class="actions flex">
+         <form class="form" action="" method="post">
+           <input type="hidden" name="s_id" value="<?php echo $step['s_id']; ?>">
+           <button type="submit" name="deleteStep" class="btn secondColor"><i class="fas fa-trash-alt"></i></button>
+         </form>
+       </div>
      </article>
    </div>
 

@@ -8,10 +8,17 @@ if(empty($_GET["p_id"]) || !$_GET["p_id"] > 0) {
   header('Location: index.php');
 }
 
+//Handle the form submissions
 if(isset($_POST["addStep"])) {
   addStep($_POST, $bdd);
 }
 
+if(isset($_POST["deleteStep"])) {
+  deleteStep($_POST, $bdd);
+}
+
+//Get the current project with associated steps
 $project = getProject($bdd, $_GET["p_id"]);
+
 include "../views/projectView.php";
  ?>

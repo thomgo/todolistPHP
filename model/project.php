@@ -10,15 +10,6 @@ function addProject(Array $project, $bdd) {
   ]);
 }
 
-//Store a new step related to a project in data base
-function addStep(Array $step, $bdd) {
-  $requete = $bdd->prepare("INSERT INTO step(name, project_id) VALUES(:name, :project_id)");
-  $requete->execute([
-    ":name" => $step["name"],
-    ":project_id" => $step["project_id"]
-  ]);
-}
-
 //Get all projects in database to display them on index view
 function getProjects($bdd) {
   $requete = $bdd->query("SELECT * , DATE_FORMAT(endDate, '%d-%m-%Y') AS endDate FROM project WHERE status = 1 ORDER BY DATE(endDate) ASC");
@@ -40,9 +31,6 @@ function getProject($bdd, $id) {
     ":p_id" => $id
   ]);
   $projects = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-  $reorder = [];
-
   return $projects;
 }
 

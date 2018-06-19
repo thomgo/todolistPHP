@@ -50,6 +50,11 @@
            <button type="submit" name="deleteStep" class="btn secondColor"><i class="fas fa-trash-alt"></i></button>
          </form>
        </div>
+       <form class="form" action="" method="post">
+           <input type="hidden" name="stepId" value="<?php echo $step['s_id']; ?>">
+           <input type="text" name="t_name">
+           <button type="submit" name="addTask" class="btn mainColor">Add task</button>
+       </form>
      </article>
    </div>
 

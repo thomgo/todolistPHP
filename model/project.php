@@ -20,18 +20,35 @@ function getProjects($bdd) {
 //Get a single project in the data base
 function getProject($bdd, $id) {
   $requete = $bdd->prepare(
-  "SELECT title, description, p_id, status, endDate, s_id, name, project_id , DATE_FORMAT(endDate, '%d-%m-%Y')
-  AS endDate
+  "SELECT title, description, p_id, status, endDate, s_id, name, project_id, t_id, t_name, t_status, stepId,
+  DATE_FORMAT(endDate, '%d-%m-%Y') AS endDate
   FROM project
   LEFT JOIN step
   ON project.p_id = step.project_id
+  LEFT JOIN task
+  ON step.s_id = task.stepId
   WHERE p_id = :p_id"
   );
   $requete->execute([
     ":p_id" => $id
   ]);
-  $projects = $requete->fetchAll(PDO::FETCH_ASSOC);
-  return $projects;
+  $project = $requete->fetchAll(PDO::FETCH_ASSOC);
+  //Group the result in sub arrays by step
+  $result = [
+    "title" => $project[0]["title"],
+    "description" => $project[0]["description"],
+    "p_id" => $project[0]["p_id"],
+    "status" => $project[0]["status"],
+    "endDate" => $project[0]["endDate"],
+    "steps" => []
+  ];
+  //If the project has steps then feed the steps array
+  if(isset($project[0]["name"])) {
+    foreach ($project as $step) {
+        $result["steps"][$step['s_id']][] = $step;
+    }
+  }
+  return $result;
 }
 
 //Get all archived projects in database to display them on index view

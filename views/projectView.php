@@ -2,7 +2,7 @@
   include("template/header.php")
  ?>
 
-  <h2>Project : <?php echo $project[0]["title"]; ?></h2>
+  <h2>Project : <?php echo $project["title"]; ?></h2>
   <h3 class="my-4">Steps of the project</h3>
 
   <!-- Button trigger modal -->
@@ -24,7 +24,7 @@
         <form class="" action="" method="post">
           <p>Step's name</p>
           <input type="text" name="name" value="">
-          <input type="hidden" name="project_id" value="<?php echo $project[0]["p_id"]; ?>">
+          <input type="hidden" name="project_id" value="<?php echo $project["p_id"]; ?>">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -38,25 +38,35 @@
 <!-- Display steps inside a loop -->
 <div class="row mt-5">
   <?php
-    if($project[0]["name"] !== null) {
-    foreach ($project as $step) {
+    //If the project has steps
+    if(!empty($project["steps"])) {
+      foreach ($project["steps"] as $step) {
    ?>
-   <div class="col-sm-4">
-     <article class="project secondColor my-3 py-2 px-2">
-       <h3><?php echo $step["name"]; ?></h3>
-       <div class="actions flex">
-         <form class="form" action="" method="post">
-           <input type="hidden" name="s_id" value="<?php echo $step['s_id']; ?>">
-           <button type="submit" name="deleteStep" class="btn secondColor"><i class="fas fa-trash-alt"></i></button>
-         </form>
+       <!-- Square for each step -->
+       <div class="col-sm-4">
+         <article class="project projectView secondColor my-3 py-2 px-2">
+           <h3><?php echo $step[0]["name"]; ?></h3>
+           <div class="actions flex">
+             <!-- Delete step form -->
+             <form class="form" action="" method="post">
+               <input type="hidden" name="s_id" value="<?php echo $step[0]['s_id']; ?>">
+               <button type="submit" name="deleteStep" class="btn secondColor"><i class="fas fa-trash-alt"></i></button>
+             </form>
+           </div>
+           <!-- Display of the tasks related to a step -->
+           <div class="tasks mb-5">
+             <?php foreach ($step as $task): ?>
+               <p><?php echo $task["t_name"] ?></p>
+             <?php endforeach; ?>
+           </div>
+           <!-- Form to add a task -->
+           <form class="form" action="" method="post">
+               <input type="hidden" name="stepId" value="<?php echo $step[0]['s_id']; ?>">
+               <input type="text" name="t_name">
+               <button type="submit" name="addTask" class="btn mainColor">Add task</button>
+           </form>
+         </article>
        </div>
-       <form class="form" action="" method="post">
-           <input type="hidden" name="stepId" value="<?php echo $step['s_id']; ?>">
-           <input type="text" name="t_name">
-           <button type="submit" name="addTask" class="btn mainColor">Add task</button>
-       </form>
-     </article>
-   </div>
 
     <?php
       }

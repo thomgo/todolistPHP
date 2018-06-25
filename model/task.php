@@ -18,4 +18,20 @@ function deleteTask(Array $task, $bdd) {
     ]);
 }
 
+//Mark a task as completed
+function completeTask(Array $task, $bdd){
+  $requete = $bdd->prepare("UPDATE task SET t_status = 1 WHERE t_id = ?");
+  $requete->execute([
+    $task['t_id']
+  ]);
+ }
+
+ //Mark a task as uncompleted
+ function activeTask(Array $task, $bdd){
+   $requete = $bdd->prepare("UPDATE task SET t_status = 0 WHERE t_id = ?");
+   $requete->execute([
+     $task['t_id']
+   ]);
+  }
+
 ?>

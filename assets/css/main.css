@@ -130,6 +130,10 @@ textarea {
   font-size: .8em;
 }
 
+.taskBtn {
+  background-color: inherit;
+}
+
 a {
   color: #565676;
 }

@@ -55,9 +55,17 @@
            </div>
            <!-- Display of the tasks related to a step -->
            <div class="tasks mb-5">
-             <?php foreach ($step as $task): ?>
-               <p><?php echo $task["t_name"] ?></p>
-             <?php endforeach; ?>
+             <ul class="list-group text-left">
+               <?php foreach ($step as $task): ?>
+                 <li class="list-group-item">
+                   <?php echo $task["t_name"] ?>
+                   <form class="form d-inline ml-3" action="" method="post">
+                     <input type="hidden" name="t_id" value="<?php echo $task['t_id']; ?>">
+                     <button type="submit" name="deleteTask" class="btn"><i class="fas fa-trash-alt"></i></button>
+                   </form>
+                 </li>
+               <?php endforeach; ?>
+             </ul>
            </div>
            <!-- Form to add a task -->
            <form class="form" action="" method="post">

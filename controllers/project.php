@@ -22,6 +22,10 @@ if(isset($_POST["addTask"])) {
   addTask($_POST, $bdd);
 }
 
+if(isset($_POST["deleteTask"])) {
+  deleteTask($_POST, $bdd);
+}
+
 //Get the current project with associated steps
 $project = getProject($bdd, $_GET["p_id"]);
 

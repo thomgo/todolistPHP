@@ -10,7 +10,7 @@ function addStep(Array $step, $bdd) {
   }
 
 //Delete a specific step in the database
-function deleteTask(Array $step, $bdd) {
+function deleteStep(Array $step, $bdd) {
     $requete = $bdd->prepare("DELETE FROM step WHERE s_id = " . $step['s_id']);
     $requete->execute();
 }

@@ -56,28 +56,30 @@
            <!-- Display of the tasks related to a step -->
            <div class="tasks mb-5">
              <ul class="list-group text-left">
-               <?php foreach ($step as $task): ?>
-                 <?php if ($task["t_status"]): ?>
-                  <li class="list-group-item list-group-item-success">
-                    <?php echo $task["t_name"]; ?>
+               <?php if (isset($step[0]["t_name"])): ?>
+                 <?php foreach ($step as $task): ?>
+                   <?php if ($task["t_status"]): ?>
+                    <li class="list-group-item list-group-item-success">
+                      <?php echo $task["t_name"]; ?>
+                     <form class="form d-inline ml-3" action="" method="post">
+                       <input type="hidden" name="t_id" value="<?php echo $task['t_id']; ?>">
+                       <button type="submit" name="activeTask" class="btn taskBtn"><i class="fas fa-undo"></i></button>
+                     </form>
+                   <?php else: ?>
+                    <li class="list-group-item">
+                     <?php echo $task["t_name"]; ?>
+                     <form class="form d-inline ml-3" action="" method="post">
+                       <input type="hidden" name="t_id" value="<?php echo $task['t_id']; ?>">
+                       <button type="submit" name="completeTask" class="btn taskBtn"><i class="fas fa-check-circle"></i></button>
+                     </form>
+                   <?php endif; ?>
                    <form class="form d-inline ml-3" action="" method="post">
                      <input type="hidden" name="t_id" value="<?php echo $task['t_id']; ?>">
-                     <button type="submit" name="activeTask" class="btn taskBtn"><i class="fas fa-undo"></i></button>
+                     <button type="submit" name="deleteTask" class="btn taskBtn"><i class="fas fa-trash-alt"></i></button>
                    </form>
-                 <?php else: ?>
-                  <li class="list-group-item">
-                   <?php echo $task["t_name"]; ?>
-                   <form class="form d-inline ml-3" action="" method="post">
-                     <input type="hidden" name="t_id" value="<?php echo $task['t_id']; ?>">
-                     <button type="submit" name="completeTask" class="btn taskBtn"><i class="fas fa-check-circle"></i></button>
-                   </form>
-                 <?php endif; ?>
-                 <form class="form d-inline ml-3" action="" method="post">
-                   <input type="hidden" name="t_id" value="<?php echo $task['t_id']; ?>">
-                   <button type="submit" name="deleteTask" class="btn taskBtn"><i class="fas fa-trash-alt"></i></button>
-                 </form>
-                 </li>
-               <?php endforeach; ?>
+                   </li>
+                 <?php endforeach; ?>
+               <?php endif; ?>
              </ul>
            </div>
            <!-- Form to add a task -->

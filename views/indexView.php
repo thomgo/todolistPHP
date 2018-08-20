@@ -13,6 +13,7 @@
    ?>
    <div class="col-sm-4">
      <article class="project secondColor my-3 py-2 px-2">
+       <!-- Tag with color and number of left days -->
         <?php if ($project["endDate"]): ?>
           <p class="date <?php echo "bg-" . $project["priority"] ?>">
             <span><?php echo " J -" . $project["leftDays"]; ?></span>

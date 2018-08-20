@@ -60,20 +60,20 @@ function getArchive($bdd) {
 
 //Delete a specific project in database
 function deleteProject(Array $project, $bdd){
-  $requete = $bdd->prepare("DELETE FROM project WHERE p_id = " . $project['p_id']);
-  $requete->execute();
+  $requete = $bdd->prepare("DELETE FROM project WHERE p_id = ?");
+  $requete->execute([$project['p_id']]);
  }
 
  //Archive a specific project in database
  function archiveProject(Array $project, $bdd){
-   $requete = $bdd->prepare("UPDATE project SET status = 0 WHERE p_id = " . $project['p_id'] );
-   $requete->execute();
+   $requete = $bdd->prepare("UPDATE project SET status = 0 WHERE p_id = ?");
+   $requete->execute([$project['p_id']]);
   }
 
   //Active a specific project in database
   function activeProject(Array $project, $bdd){
-    $requete = $bdd->prepare("UPDATE project SET status = 1 WHERE p_id = " . $project['p_id'] );
-    $requete->execute();
+    $requete = $bdd->prepare("UPDATE project SET status = 1 WHERE p_id = ?");
+    $requete->execute([$project['p_id']]);
    }
 
  ?>

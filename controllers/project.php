@@ -33,6 +33,7 @@ if(isset($_POST["completeTask"])) {
 if(isset($_POST["activeTask"])) {
   activeTask($_POST, $bdd);
 }
+
 //Get the current project with associated steps
 $project = getProject($bdd, $_GET["p_id"]);
 
